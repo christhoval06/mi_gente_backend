@@ -1,0 +1,17 @@
+flask
+flask-smorest
+python-dotenv
+sqlalchemy
+flask_cors
+flask-sqlalchemy
+flask-jwt-extended
+passlib
+psycopg2-binary
+flask-migrate
+gunicorn
+Werkzeug
+sqlalchemy_serializer
+flask_marshmallow
+marshmallow-sqlalchemy
+flask_jwt_extended
+
