@@ -5,14 +5,6 @@ from app.models.person import Person, person_schema, get_person_schema
 
 people_router = Blueprint('people', __name__)
 
-
-@people_router.after_request 
-def after_request(response):
-    header = response.headers
-    header['Access-Control-Allow-Origin'] = '*'
-    # Other headers can be added here if needed
-    return response
-
 @people_router.before_request
 @api_key_required
 def before_request():
