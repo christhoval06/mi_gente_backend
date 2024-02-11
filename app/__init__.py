@@ -1,5 +1,6 @@
 from app.utils.db import get_conflicting_field
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from marshmallow import ValidationError
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import import_string
@@ -8,7 +9,7 @@ extensions = [
     "app.models:db",
     "app.models:ma",
     # "app.admin:admin",
-    "app.extension.cors:cors",
+    # "app.extension.cors:cors",
     # "app.extension.babel:babel",
     # "app.extension.sentry:sentry",
     # "app.extension.migrate:migrate",
@@ -25,6 +26,7 @@ def create_app():
 
     app = Flask(__name__)
     app.config.from_object("app.config.Config")
+    CORS(app=app)
     
     for name in extensions:
         extension = import_string(name)
