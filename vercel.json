@@ -1,26 +1,14 @@
 {
   "builds": [
     {
-      "src": "/lms/main.py",
+      "src": "/app/__init__.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "lms/main.py"
-    },
-    {
-      "src": "/",
-      "dest": "lms/main.py"
-    },
-    {
-      "src": "/docs",
-      "dest": "lms/main.py"
-    },
-    {
-      "src": "/openapi.json",
-      "dest": "lms/main.py"
+      "dest": "app/__init__.py"
     }
   ]
 }
