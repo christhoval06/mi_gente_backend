@@ -9,7 +9,7 @@ extensions = [
     "app.models:db",
     "app.models:ma",
     # "app.admin:admin",
-    # "app.extension.cors:cors",
+    "app.extension.cors:cors",
     # "app.extension.babel:babel",
     # "app.extension.sentry:sentry",
     # "app.extension.migrate:migrate",
@@ -35,9 +35,7 @@ def create_app():
         blueprint = import_string(name)
         App.register_blueprint(blueprint)
 
-    cors = CORS(app=App)
-
-    return cors.app
+    return App
 
 app = create_app()
 
