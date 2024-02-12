@@ -5,13 +5,9 @@ from app.auth import api_key_required
 from app.models.person import Person, person_schema, get_person_schema
 
 def init(app):
-    @app.before_request
-    @api_key_required
-    def before_request():
-        """ Protect all of the admin endpoints. """
-        pass
 
     @app.route('/api/people', methods=['GET'])
+    @api_key_required
     def get_people():
         page = request.args.get("page", 1, type=int)
         per_page = request.args.get("per-page", 100, type=int)
@@ -43,6 +39,7 @@ def init(app):
         return jsonify(results), 200
 
     @app.route('/api/people/<int:id>', methods=['GET'])
+    @api_key_required
     def get_person(id):
         person = Person.query.get(id)
         if person is None:
@@ -53,6 +50,7 @@ def init(app):
         return result, 200
 
     @app.route('/people', methods=['POST'])
+    @api_key_required
     def set_person():
         result = person_schema.load(request.json)
         person = Person(**result)
@@ -62,6 +60,7 @@ def init(app):
         return result, 200
 
     @app.route('/api/people/<int:id>', methods=['PUT'])
+    @api_key_required
     def put_person(id):
         person = Person.query.get(id)
         if person is None:
@@ -77,6 +76,7 @@ def init(app):
 
 
     @app.route('/api/people/<int:id>', methods=['PATCH'])
+    @api_key_required
     def patch_person(id):
         person = Person.query.get(id)
         if person is None:
@@ -98,6 +98,7 @@ def init(app):
 
 
     @app.route('/api/people/voting_place/stats', methods=['GET'])
+    @api_key_required
     def get_voting_place_stats():
         from sqlalchemy import func
         from sqlalchemy.sql import label
@@ -110,6 +111,7 @@ def init(app):
 
 
     @app.route('/api/people/voting_place/votes', methods=['GET'])
+    @api_key_required
     def get_votes_by_voting_place():
         from sqlalchemy import func
         from sqlalchemy.sql import label
