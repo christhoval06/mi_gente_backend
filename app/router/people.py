@@ -1,10 +1,10 @@
 
-from app.auth import api_key_required
 from flask import jsonify, request
 
+from app.auth import api_key_required
 from app.models.person import Person, person_schema, get_person_schema
 
-def handle_db_integrity_error(app):
+def init(app):
     @app.before_request
     @api_key_required
     def before_request():
