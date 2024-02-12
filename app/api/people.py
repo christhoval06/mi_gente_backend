@@ -1,14 +1,14 @@
 from app.auth import api_key_required
 from flask import jsonify, Blueprint, request
-from flask_cors import cross_origin
+from flask_cors import CORS
 
 from app.models.person import Person, person_schema, get_person_schema
 
 people_router = Blueprint('people', __name__)
+CORS(people_router)
 
 @people_router.before_request
 @api_key_required
-@cross_origin
 def before_request():
     """ Protect all of the admin endpoints. """
     pass
