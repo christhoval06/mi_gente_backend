@@ -7,7 +7,7 @@
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/app/__init__.py",
       "headers": [
         {
           "key": "Access-Control-Allow-Credentials",
