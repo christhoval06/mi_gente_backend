@@ -41,7 +41,7 @@ def create_app():
 app = create_app()
 
 @app.route("/")
-def hello_world():
+def info():
     return jsonify(version="v1.0.0", name="Mi Gente")
 
 @app.errorhandler(404)
