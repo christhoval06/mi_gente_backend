@@ -24,19 +24,20 @@ blueprints = [
 
 def create_app():
 
-    app = Flask(__name__)
-    app.config.from_object("app.config.Config")
-    CORS(app=app)
+    App = Flask(__name__)
+    App.config.from_object("app.config.Config")
     
     for name in extensions:
         extension = import_string(name)
-        extension.init_app(app)
+        extension.init_app(App)
 
     for name in blueprints:
         blueprint = import_string(name)
-        app.register_blueprint(blueprint)
+        App.register_blueprint(blueprint)
 
-    return app
+    cors = CORS(app=App)
+
+    return cors.app
 
 app = create_app()
 
