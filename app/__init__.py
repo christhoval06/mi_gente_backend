@@ -18,8 +18,13 @@ extensions = [
 ]
 
 blueprints = [
-    "app.api:api",
+    # "app.api:api",
 ]
+
+routers = [
+    "app.router.people:init",
+]
+
 
 
 def create_app():
@@ -34,6 +39,10 @@ def create_app():
     for name in blueprints:
         blueprint = import_string(name)
         App.register_blueprint(blueprint)
+
+    for name in routers:
+        route = import_string(name)
+        route(App)
 
     return App
 
