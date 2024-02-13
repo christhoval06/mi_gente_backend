@@ -9,6 +9,7 @@ from app.models.person import Person, person_schema, get_person_schema
 def init(app):
 
     @app.route('/api/voting_place', methods=['GET'])
+    @api_key_required
     def get_voting_places():
         result = Person.query.filter(Person.is_voted==True).with_entities(Person.voting_place).distinct().all()
         result = [place for (place,) in result]
