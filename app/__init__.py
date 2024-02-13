@@ -23,6 +23,7 @@ blueprints = [
 
 routers = [
     "app.router.people:init",
+    "app.router.voting_place:init",
 ]
 
 
