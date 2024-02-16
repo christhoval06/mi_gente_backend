@@ -5,7 +5,7 @@ from marshmallow import ValidationError
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import import_string
 
-json.provider.DefaultJSONProvider.ensure_ascii = False
+# json.provider.DefaultJSONProvider.ensure_ascii = False
 
 extensions = [
     "app.models:db",
@@ -34,7 +34,6 @@ def create_app():
 
     App = Flask(__name__)
     App.config.from_object("app.config.Config")
-    App.json = json.provider.DefaultJSONProvider(App)
     
     for name in extensions:
         extension = import_string(name)
