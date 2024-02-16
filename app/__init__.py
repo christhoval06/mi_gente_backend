@@ -34,6 +34,7 @@ def create_app():
 
     App = Flask(__name__)
     App.config.from_object("app.config.Config")
+    App.json = json.provider.DefaultJSONProvider(App)
     
     for name in extensions:
         extension = import_string(name)
