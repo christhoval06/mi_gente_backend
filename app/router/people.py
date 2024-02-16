@@ -41,7 +41,7 @@ def init(app):
                 "pages": people.pages,
             },
         }
-        return jsonify(results), 200
+        return results, 200
 
     @app.route('/api/people/<int:id>', methods=['GET'])
     @api_key_required
