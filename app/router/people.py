@@ -27,10 +27,10 @@ def init(app):
         page = request.args.get("page", 1, type=int)
         per_page = request.args.get("per-page", 100, type=int)
 
-        query = query.filter(*filters)
+        query = query.filter(*filters).order_by(Person.updated_at.desc())
 
 
-        people = query.paginate(page=page, per_page=per_page).order_by(Person.updated_at.desc())
+        people = query.paginate(page=page, per_page=per_page)
 
         results = {
             "results": person_schema.dump(people.items, many=True),
