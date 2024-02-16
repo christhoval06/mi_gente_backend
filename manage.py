@@ -21,3 +21,9 @@ def seed_db():
 
 if __name__ == "__main__":
     cli()
+
+
+# https://github.com/ip0000h/flask-docker-compose/tree/master
+# https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/
+    
+# docker compose exec melquisapi python manage.py seed_db

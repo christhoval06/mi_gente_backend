@@ -1,9 +1,11 @@
 from app.utils.db import get_conflicting_field
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, json
 from flask_cors import CORS
 from marshmallow import ValidationError
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import import_string
+
+json.provider.DefaultJSONProvider.ensure_ascii = False
 
 extensions = [
     "app.models:db",
