@@ -147,15 +147,10 @@ def init(app):
         if votes in ['si', 'no']:
             filters.append(Person.is_voted==(True if votes=='si' else False))
 
-
-        case_statement = case(
-                (extract('year', func.age(Person.birthdate)) >= 70, 'F'),
-                (extract('year', func.age(Person.birthdate)) >= 60, 'E'),
-                (extract('year', func.age(Person.birthdate)) >= 50, 'D'),
-                (extract('year', func.age(Person.birthdate)) >= 40, 'C'),
-                (extract('year', func.age(Person.birthdate)) >= 30, 'B'),
-                (extract('year', func.age(Person.birthdate)) >= 18, 'A'),
-                else_='Z')
+        age_groups = [(70, 'F'), (60, 'E'), (50, 'D'), (40, 'C'), (30, 'B'), (18, 'A')]
+        age_cases = [(extract('year', func.age(Person.birthdate)) >= value, group) for (value, group) in age_groups]
+        case_statement = case(*age_cases, else_='Z')
+        
         
         result = db.session.query(
             label('age_group', case_statement),
