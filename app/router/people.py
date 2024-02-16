@@ -2,7 +2,7 @@
 import functools
 from app.utils.tuples import tuple_reducer
 from flask import jsonify, request
-from sqlalchemy import extract, func, select, case
+from sqlalchemy import extract, func, case
 from sqlalchemy.sql import label
 
 from app.auth import api_key_required
@@ -93,7 +93,7 @@ def init(app):
         return result, 200
     
     @app.route('/api/people/provinces/votes/<string:votes>/count', methods=['GET'])
-    # @api_key_required
+    @api_key_required
     def people_provinces_votes_count(votes):
 
         provinces = [
@@ -137,7 +137,7 @@ def init(app):
         return result, 200
     
     @app.route('/api/people/age/votes/<string:votes>/count', methods=['GET'])
-    # @api_key_required
+    @api_key_required
     def people_age_votes_count(votes):
 
         # https://code.likeagirl.io/sql-alchemy-python-functions-part2-case-707eb7e95891
@@ -195,7 +195,7 @@ def init(app):
     
 
     @app.route('/api/people/votes/<string:votes>/count', methods=['GET'])
-    # @api_key_required
+    @api_key_required
     def people_votes_count(votes):
 
         filters = []
