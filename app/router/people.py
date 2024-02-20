@@ -24,6 +24,9 @@ def init(app):
         if ndi := request.args.get("ndi", None, type=str):
             filters.append(Person.ndi == ndi)
 
+        if votes:= request.args.get("votes", None, type=str) in ['si', 'no']:
+            filters.append(Person.is_voted==(True if votes=='si' else False))
+
         page = request.args.get("page", 1, type=int)
         per_page = request.args.get("per-page", 100, type=int)
 
