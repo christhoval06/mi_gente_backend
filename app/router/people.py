@@ -159,8 +159,8 @@ def init(app):
                 func.count(case_statement).label('age_group_count'),
         ).group_by('age_group').filter(*filters).all()
 
-        # result = [{f'{age_group}': count} for (age_group, count) in result]
-        result = functools.reduce(tuple_reducer , result, {})
+        result = [{'group':age_group, 'count': count} for (age_group, count) in result]
+        # result = functools.reduce(tuple_reducer , result, {})
     
         return result, 200
 
