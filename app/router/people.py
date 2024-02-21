@@ -160,7 +160,7 @@ def init(app):
         result = db.session.query(
             label('age_group', case_statement),
                 func.count(case_statement).label('age_group_count'),
-        ).group_by('age_group').filter(*filters).all()
+        ).group_by('age_group').filter(*filters).order_by('age_group').all()
 
         result = [{'group':age_group, 'count': count} for (age_group, count) in result]
         # result = functools.reduce(tuple_reducer , result, {})
